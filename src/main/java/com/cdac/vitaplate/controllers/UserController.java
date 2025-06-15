@@ -1,5 +1,8 @@
 package com.cdac.vitaplate.controllers;
 
+import com.cdac.vitaplate.dto.JwtResponse;
+import com.cdac.vitaplate.dto.LoginRequest;
+import com.cdac.vitaplate.dto.LoginResponse;
 import com.cdac.vitaplate.entities.*;
 import com.cdac.vitaplate.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +43,21 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        loginRequest.setRole("coordinator");
+        // Call signIn method in CoordinatorService
+        JwtResponse jwtResponse = userService.signIn(loginRequest);
+
+        // Map JwtResponse to LoginResponse
+        LoginResponse loginResponse = new LoginResponse(jwtResponse.getToken(), jwtResponse.getMessage());
+        return ResponseEntity.ok(loginResponse);
+    }
+
+    @PostMapping("/add-user")
+    public String addStudent(@RequestBody User addUserRequest) {
+        return userService.addUser(addUserRequest);
     }
 }

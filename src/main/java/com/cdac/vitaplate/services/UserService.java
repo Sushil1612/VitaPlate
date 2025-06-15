@@ -1,5 +1,7 @@
 package com.cdac.vitaplate.services;
 
+import com.cdac.vitaplate.dto.JwtResponse;
+import com.cdac.vitaplate.dto.LoginRequest;
 import com.cdac.vitaplate.entities.User;
 
 import java.util.List;
@@ -11,4 +13,6 @@ public interface UserService {
     Optional<User> getUserById(Long id);
     List<User> getAllUsers();
     void deleteUser(Long id);
+    JwtResponse signIn(LoginRequest loginRequest);
+    String addUser(User addUserRequest) ;
 }
