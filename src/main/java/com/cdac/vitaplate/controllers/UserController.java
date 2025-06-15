@@ -47,7 +47,6 @@ public class UserController {
 
     @PostMapping("/signin")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
-        loginRequest.setRole("coordinator");
         // Call signIn method in CoordinatorService
         JwtResponse jwtResponse = userService.signIn(loginRequest);
 

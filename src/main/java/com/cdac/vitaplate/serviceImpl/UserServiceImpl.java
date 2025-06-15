@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
 
         // Generate JWT token with email as the subject
         // user sent role must be sent in ALL CAPS
-        String token = jwtConfig.generateToken(email, "ROLE_" + loginRequest.getRole());
+        String token = jwtConfig.generateToken(email, "ROLE_" + loginRequest.getRole().toUpperCase());
         // Return JwtResponse with token and a success message
         return new JwtResponse(token, "SignIn successful");
     }
