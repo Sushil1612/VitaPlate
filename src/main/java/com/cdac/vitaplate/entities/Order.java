@@ -63,5 +63,9 @@ public class Order {
         READY_FOR_DELIVERY,
         DELIVERED
     }
-}
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RequestStatus requestStatus = RequestStatus.PENDING;
+
+}

@@ -1,6 +1,6 @@
 package com.cdac.vitaplate.controllers;
 
-
+import com.cdac.vitaplate.dto.MenuRequest;
 import com.cdac.vitaplate.entities.*;
 import com.cdac.vitaplate.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +15,15 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-    @PostMapping
-    public ResponseEntity<Menu> createMenu(@RequestBody Menu menu) {
-        return ResponseEntity.ok(menuService.createMenu(menu));
+    @PostMapping("/addMenu")
+    public ResponseEntity<Menu> createMenu(@RequestBody MenuRequest dto) {
+        return ResponseEntity.ok(menuService.createMenu(dto));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Menu> updateMenu(@PathVariable Long id, @RequestBody Menu menu) {
-        return ResponseEntity.ok(menuService.updateMenu(id, menu));
-    }
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Menu> updateMenu(@PathVariable Long id, @RequestBody Menu menu) {
+    //     return ResponseEntity.ok(menuService.updateMenu(id, menu));
+    // }
 
     @GetMapping("/{id}")
     public ResponseEntity<Menu> getMenuById(@PathVariable Long id) {
