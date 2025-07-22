@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tiffins")
@@ -36,6 +37,10 @@ public class Tiffin {
     private boolean isAvailable;
 
     private LocalDateTime createdAt;
+
+    @ManyToMany
+    @JoinTable(name = "tiffin_items", joinColumns = @JoinColumn(name = "tiffin_id"), inverseJoinColumns = @JoinColumn(name = "menu_item_id"))
+    private List<MenuItem> items;
 
     @PrePersist
     protected void onCreate() {

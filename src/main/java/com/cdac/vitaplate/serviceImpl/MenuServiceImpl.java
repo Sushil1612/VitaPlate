@@ -47,6 +47,7 @@ public class MenuServiceImpl implements MenuService {
             menuItem.setName(itemDTO.getName());
             menuItem.setDescription(itemDTO.getDescription());
             menuItem.setAvailable(itemDTO.isAvailable());
+            menuItem.setPrice(itemDTO.getPrice());
             return menuItem;
         }).collect(Collectors.toList());
 
@@ -60,12 +61,12 @@ public class MenuServiceImpl implements MenuService {
 
     // @Override
     // public Menu updateMenu(Long id, Menu updatedMenu) {
-    //     return menuRepository.findById(id).map(existingMenu -> {
-    //         existingMenu.setTiffin(updatedMenu.getTiffin());
-    //         existingMenu.setDate(updatedMenu.getDate());
-    //         existingMenu.setAvailable(updatedMenu.isAvailable());
-    //         return menuRepository.save(existingMenu);
-    //     }).orElseThrow(() -> new RuntimeException("Menu not found with id: " + id));
+    // return menuRepository.findById(id).map(existingMenu -> {
+    // existingMenu.setTiffin(updatedMenu.getTiffin());
+    // existingMenu.setDate(updatedMenu.getDate());
+    // existingMenu.setAvailable(updatedMenu.isAvailable());
+    // return menuRepository.save(existingMenu);
+    // }).orElseThrow(() -> new RuntimeException("Menu not found with id: " + id));
     // }
 
     @Override

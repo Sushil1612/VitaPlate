@@ -1,5 +1,7 @@
 package com.cdac.vitaplate.entities;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +30,8 @@ public class MenuItem {
     private String description;
 
     private boolean isAvailable;
-}
 
+    @Column(nullable = false)
+    private BigDecimal price;
+
+}
