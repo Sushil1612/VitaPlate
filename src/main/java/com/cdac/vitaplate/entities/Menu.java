@@ -9,6 +9,8 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "menus")
 @AllArgsConstructor
@@ -32,5 +34,7 @@ public class Menu {
 
     // List of menu items
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    @JsonManagedReference
+
     private List<MenuItem> items;
 }

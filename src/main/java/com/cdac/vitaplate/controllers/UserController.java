@@ -3,6 +3,7 @@ package com.cdac.vitaplate.controllers;
 import com.cdac.vitaplate.dto.JwtResponse;
 import com.cdac.vitaplate.dto.LoginRequest;
 import com.cdac.vitaplate.dto.LoginResponse;
+import com.cdac.vitaplate.dto.OtpVerificationRequest;
 import com.cdac.vitaplate.entities.*;
 import com.cdac.vitaplate.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,17 @@ public class UserController {
     @PostMapping("/add-user")
     public String addStudent(@RequestBody User addUserRequest) {
         return userService.addUser(addUserRequest);
+    }
+
+    @GetMapping("/generate-otp")
+    public ResponseEntity<String> generateOtp(@RequestParam String email) {
+        userService.generateOtp(email);
+        return ResponseEntity.ok("OTP sent successfully");
+    }
+
+    @PostMapping("/verify-otp")
+    public ResponseEntity<String> verifyOtp(@RequestBody OtpVerificationRequest request) {
+        String result = userService.verifyOtp(request.getEmail(), request.getOtp());
+        return ResponseEntity.ok(result);
     }
 }

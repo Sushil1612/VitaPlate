@@ -40,6 +40,11 @@ public class User {
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean isVerified;
 
+    @Column(length = 6)
+    private String otp;
+
+    private LocalDateTime otpExpiry;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();

@@ -9,10 +9,20 @@ import java.util.Optional;
 
 public interface UserService {
     User createUser(User user);
+
     User updateUser(Long id, User user);
+
     Optional<User> getUserById(Long id);
+
     List<User> getAllUsers();
+
     void deleteUser(Long id);
+
     JwtResponse signIn(LoginRequest loginRequest);
-    String addUser(User addUserRequest) ;
+
+    String addUser(User addUserRequest);
+
+    void generateOtp(String email);
+
+    String verifyOtp(String email, String otp) ;
 }

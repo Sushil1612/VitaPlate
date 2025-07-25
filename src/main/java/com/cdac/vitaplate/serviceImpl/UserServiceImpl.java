@@ -21,10 +21,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder ;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private JWTConfig jwtConfig ;
+    private JWTConfig jwtConfig;
+
+    @Autowired
+    private EmailService emailService;
 
     @Override
     public User createUser(User user) {
@@ -68,20 +71,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public JwtResponse signIn(LoginRequest loginRequest) {
+
         String email = loginRequest.getEmail(); // Get email from login request
 
-        User user = userRepository.findByEmail(email) ;
+        User user = userRepository.findByEmail(email);
 
-        // Fetch the coordinator by email
         if (!user.getIsVerified()) {
-            throw new RuntimeException("User is not verified. Please complete OTP verification.");
+            return new JwtResponse(null, "User is not verified. Please complete OTP verification.");
         }
 
-        if(user.getPassword().equals("") || user.getPassword().equals(null)){
-            JwtResponse response = new JwtResponse() ;
+        if (user.getPassword().equals("") || user.getPassword().equals(null)) {
+            JwtResponse response = new JwtResponse();
             response.setToken(null);
             response.setMessage("Password not found for User");
-            return response ;
+            return response;
         }
 
         // Fetch the password by coordinator ID
@@ -99,23 +102,65 @@ public class UserServiceImpl implements UserService {
     @Override
     public String addUser(User addUserRequest) {
 
-        if(userRepository.existsByEmail(addUserRequest.getEmail())){
+        if (userRepository.existsByEmail(addUserRequest.getEmail())) {
             throw new RuntimeException("Email already in use");
         }
-        String encodePasswoString = passwordEncoder.encode(addUserRequest.getPassword()) ;
+        String encodePasswoString = passwordEncoder.encode(addUserRequest.getPassword());
 
-        User user = new User() ;
+        User user = new User();
         user.setAddress(addUserRequest.getAddress());
         user.setCreatedAt(LocalDateTime.now());
         user.setEmail(addUserRequest.getEmail());
         user.setName(addUserRequest.getName());
         user.setPassword(encodePasswoString);
         user.setPhone(addUserRequest.getPhone());
-        user.setIsVerified(true);
+        user.setIsVerified(false);
         user.setRole(addUserRequest.getRole());
 
-        User savedUser = userRepository.save(user) ;
+        User savedUser = userRepository.save(user);
 
-        return savedUser.getName() + " saved successfully with role " + savedUser.getRole() ;
+        return savedUser.getName() + " saved successfully with role " + savedUser.getRole();
     }
+
+    @Override
+    public void generateOtp(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user == null)
+            throw new RuntimeException("User not found");
+
+        if (user.getIsVerified()) {
+            throw new RuntimeException("User already verified");
+        }
+
+        String otp = String.valueOf((int) (Math.random() * 900000) + 100000); // 6-digit OTP
+        user.setOtp(otp);
+        user.setOtpExpiry(LocalDateTime.now().plusMinutes(5)); // Valid for 10 minutes
+        userRepository.save(user);
+
+        // Send OTP via email
+        emailService.sendOtpEmail(user.getEmail(), otp);
+    }
+
+    @Override
+    public String verifyOtp(String email, String otp) {
+        User user = userRepository.findByEmail(email);
+        if (user == null)
+            throw new RuntimeException("User not found");
+
+        if (user.getOtpExpiry().isBefore(LocalDateTime.now())) {
+            throw new RuntimeException("OTP expired");
+        }
+
+        if (!user.getOtp().equals(otp)) {
+            throw new RuntimeException("Invalid OTP");
+        }
+
+        user.setIsVerified(true);
+        user.setOtp(null);
+        user.setOtpExpiry(null);
+        userRepository.save(user);
+
+        return "User verified successfully";
+    }
+
 }

@@ -3,6 +3,9 @@ package com.cdac.vitaplate.controllers;
 import com.cdac.vitaplate.dto.MenuRequest;
 import com.cdac.vitaplate.entities.*;
 import com.cdac.vitaplate.services.*;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +24,9 @@ public class MenuController {
     }
 
     // @PutMapping("/{id}")
-    // public ResponseEntity<Menu> updateMenu(@PathVariable Long id, @RequestBody Menu menu) {
-    //     return ResponseEntity.ok(menuService.updateMenu(id, menu));
+    // public ResponseEntity<Menu> updateMenu(@PathVariable Long id, @RequestBody
+    // Menu menu) {
+    // return ResponseEntity.ok(menuService.updateMenu(id, menu));
     // }
 
     @GetMapping("/{id}")

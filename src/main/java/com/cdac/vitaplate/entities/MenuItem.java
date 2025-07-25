@@ -2,6 +2,8 @@ package com.cdac.vitaplate.entities;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +25,8 @@ public class MenuItem {
     // Reference to Menu entity
     @ManyToOne(optional = false)
     @JoinColumn(name = "menu_id", nullable = false)
+    @JsonBackReference
+
     private Menu menu;
 
     private String name;

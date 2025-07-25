@@ -44,12 +44,9 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/auth/**",
-                                "/api/users/signin",
-                                "/api/users/add-user")
-                        .permitAll() // Allow auth and login endpoints
-                        .anyRequest().authenticated() // Secure all other endpoints
-                )
+                .requestMatchers("/api/menus/**",  "/api/menus/addMenu", "/api/users/**").permitAll()
+                        .anyRequest().permitAll())
+
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -71,4 +68,15 @@ public class SecurityConfig {
             }
         };
     }
+    // @Bean
+    // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    // http
+    // .csrf().disable() // disable CSRF for Postman testing
+    // .authorizeHttpRequests(auth -> auth
+    // .requestMatchers("/api/menus/**").permitAll() // allow your endpoint
+    // .anyRequest().authenticated()
+    // );
+
+    // return http.build();
+
 }
