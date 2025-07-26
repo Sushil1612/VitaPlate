@@ -2,6 +2,7 @@ package com.cdac.vitaplate.services;
 
 import java.util.List;
 
+import com.cdac.vitaplate.dto.OrderHistoryDTO;
 import com.cdac.vitaplate.dto.OrderRequestDTO;
 import com.cdac.vitaplate.dto.PlaceOrderRequest;
 import com.cdac.vitaplate.entities.Order;
@@ -15,6 +16,8 @@ public interface OrderService {
 
     Order acceptOrder(Long orderId);
 
-    Order rejectOrder(Long orderId) ;
+    Order rejectOrder(Long orderId);
+
+    List<OrderHistoryDTO> getCompletedOrders(Long customerId) ;
 
 }

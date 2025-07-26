@@ -1,6 +1,7 @@
 package com.cdac.vitaplate.serviceImpl;
 
 import com.cdac.vitaplate.dto.ActiveOrdersDTO;
+import com.cdac.vitaplate.dto.OrderHistoryDTO;
 import com.cdac.vitaplate.dto.OrderRequestDTO;
 import com.cdac.vitaplate.dto.PlaceOrderRequest;
 import com.cdac.vitaplate.entities.MenuItem;
@@ -65,7 +66,6 @@ public class OrderServiceImpl implements OrderService {
 
                 return orderRepository.save(order);
         }
-
 
         @Override
         public Order placeOrder(PlaceOrderRequest request) {
@@ -134,6 +134,25 @@ public class OrderServiceImpl implements OrderService {
                                 .orElseThrow(() -> new RuntimeException("Order not found"));
                 order.setRequestStatus(RequestStatus.REJECTED);
                 return orderRepository.save(order);
+        }
+
+        @Override
+        public List<OrderHistoryDTO> getCompletedOrders(Long customerId) {
+                User customer = userRepository.findById(customerId)
+                                .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+                List<Order> orders = orderRepository.findByCustomerAndOrderStatus(customer,
+                                Order.OrderStatus.DELIVERED);
+
+                return orders.stream().map(order -> new OrderHistoryDTO(
+                                order.getId(),
+                                order.getTiffin().getName(),
+                                order.getTiffin().getDescription(),
+                                order.getTiffin().getPrice(),
+                                order.getMom().getName(),
+                                order.getMom().getAddress(),
+                                order.getOrderedAt(),
+                                order.getDeliveredAt())).collect(Collectors.toList());
         }
 
 }

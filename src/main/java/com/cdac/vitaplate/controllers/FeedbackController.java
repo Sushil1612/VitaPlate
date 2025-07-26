@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,12 +20,14 @@ public class FeedbackController {
     @Autowired
     private FeedbackService feedbackService;
 
-    @PostMapping("/submit")
+    @PreAuthorize("hasRole('CUSTOMER')")
+    @PostMapping("/submit-feedback")
     public ResponseEntity<Feedback> submitFeedback(@RequestBody FeedbackRequest request) {
         return ResponseEntity.ok(feedbackService.submitFeedback(request));
     }
 
-    @GetMapping("/mom/{momId}")
+    @PreAuthorize("hasRole('MOM')")
+    @GetMapping("/get-feedback/{momId}")
     public ResponseEntity<List<Feedback>> getFeedbackForMom(@PathVariable Long momId) {
         return ResponseEntity.ok(feedbackService.getFeedbackForMom(momId));
     }

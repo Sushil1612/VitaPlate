@@ -14,7 +14,7 @@ public class TiffinController {
     @Autowired
     private TiffinService tiffinService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Tiffin> createTiffin(@RequestBody Tiffin tiffin) {
         return ResponseEntity.ok(tiffinService.createTiffin(tiffin));
     }

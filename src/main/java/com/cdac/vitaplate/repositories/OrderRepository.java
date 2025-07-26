@@ -1,6 +1,7 @@
 package com.cdac.vitaplate.repositories;
 
 import com.cdac.vitaplate.entities.Order;
+import com.cdac.vitaplate.entities.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,5 +16,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o WHERE o.mom.id = :momId AND o.orderedAt >= :fromTime AND o.requestStatus = 'PENDING'")
     List<Order> findActiveOrdersForMom(@Param("momId") Long momId, @Param("fromTime") LocalDateTime fromTime);
+
+    List<Order> findByCustomerAndOrderStatus(User customer, Order.OrderStatus status);
 
 }

@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,8 @@ import org.springframework.security.config.Customizer;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity // enable method-level security
+
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -43,10 +46,27 @@ public class SecurityConfig {
         http
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/api/menus/**",  "/api/menus/addMenu", "/api/users/**").permitAll()
-                        .anyRequest().permitAll())
+                .authorizeHttpRequests(auth -> auth
+                        // PUBLIC ROUTES
+                        .requestMatchers("/api/menus/**", "/api/users/**").permitAll()
 
+                        // CUSTOMER-ONLY
+                        .requestMatchers("/api/feedbacks/submit-feedback",
+                                "/api/menus/all-menus-today",
+                                "/api/order/place-order",
+                                "/api/order/get-active-orders/**",            
+                                "/api/order/get-completed-orders/**")
+                        .hasRole("CUSTOMER")
+
+                        // MOM-ONLY
+                        .requestMatchers("/api/feedbacks/get-feedback/**",
+                                "/api/menus/add-menu",
+                                "/api/order/accept/**",
+                                "/api/order/reject/**")
+                        .hasRole("MOM")
+
+                        // Any other request requires authentication
+                        .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

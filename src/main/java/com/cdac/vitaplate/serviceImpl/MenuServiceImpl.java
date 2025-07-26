@@ -1,5 +1,7 @@
 package com.cdac.vitaplate.serviceImpl;
 
+import com.cdac.vitaplate.dto.MenuDTO;
+import com.cdac.vitaplate.dto.MenuItemDTO;
 import com.cdac.vitaplate.dto.MenuRequest;
 import com.cdac.vitaplate.entities.Menu;
 import com.cdac.vitaplate.entities.MenuItem;
@@ -12,6 +14,7 @@ import com.cdac.vitaplate.services.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -86,4 +89,28 @@ public class MenuServiceImpl implements MenuService {
         }
         menuRepository.deleteById(id);
     }
+
+    @Override
+    public List<MenuDTO> getTodayMenus() {
+        LocalDate today = LocalDate.now();
+        List<Menu> menus = menuRepository.findByDateAndIsAvailableTrue(today);
+
+        return menus.stream().map(menu -> {
+            List<MenuItemDTO> itemDTOs = menu.getItems().stream()
+                    .filter(item -> item.isAvailable())
+                    .map(item -> new MenuItemDTO(
+                            item.getName(),
+                            item.getDescription(),
+                            item.getPrice(),
+                            true))
+                    .collect(Collectors.toList());
+
+            return new MenuDTO(
+                    menu.getMom().getId(),
+                    menu.getMom().getName(),
+                    menu.getMom().getAddress(),
+                    itemDTOs);
+        }).collect(Collectors.toList());
+    }
+
 }

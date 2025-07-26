@@ -1,5 +1,6 @@
 package com.cdac.vitaplate.services;
 
+import com.cdac.vitaplate.dto.MenuDTO;
 import com.cdac.vitaplate.dto.MenuRequest;
 import com.cdac.vitaplate.entities.Menu;
 
@@ -16,4 +17,6 @@ public interface MenuService {
     List<Menu> getAllMenus();
 
     void deleteMenu(Long id);
+
+    List<MenuDTO> getTodayMenus();
 }
