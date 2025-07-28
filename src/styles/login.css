@@ -1,0 +1,27 @@
+/* Full height wrapper */
+.login-wrapper {
+  background: #f4f6f8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Login box container */
+.login-form-container {
+  width: 100%;
+  max-width: 420px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Form controls */
+.login-form-container .form-control {
+  border-radius: 8px;
+  padding: 12px;
+}
+
+/* Button styling */
+.login-form-container .btn {
+  border-radius: 8px;
+  padding: 10px 0;
+  font-weight: 600;
+}

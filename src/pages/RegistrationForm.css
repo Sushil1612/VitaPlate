@@ -1,0 +1,288 @@
+/* Full Width Container */
+.registration-container-full {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.registration-header {
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.registration-header h1 {
+  color: #2c3e50;
+  font-size: 28px;
+  margin: 0 0 10px 0;
+}
+
+.mandatory-note {
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 15px;
+  display: block;
+}
+
+/* Orange line that spans full width */
+.registration-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #FE9E0D;
+  width: 100%;
+}
+
+/* Full Width Form Styling */
+.registration-form-full {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+.form-section-full {
+  margin-bottom: 40px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+
+.section-title {
+  color: #FE9E0D;
+  font-size: 20px;
+  margin-bottom: 25px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/* Form Row with proper spacing */
+.form-row-full {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; /* Increased spacing between fields */
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.form-group-full {
+  flex: 1;
+  min-width: 300px;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin-bottom: 12px; /* Increased spacing below labels */
+  font-weight: 500;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  margin-bottom: 8px; /* Space between input and error message */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+  border-color: #FE9E0D;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(254, 158, 13, 0.1);
+}
+
+.required {
+  color: #e74c3c;
+}
+
+.error {
+  border-color: #e74c3c !important;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 8px;
+  display: block;
+}
+
+/* File Upload Styling */
+.centered-upload-full {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.file-upload-container-full {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 10px;
+}
+
+.file-upload-label-full {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.file-upload-label-full input[type="file"] {
+  display: none;
+}
+
+.file-upload-button-full {
+  padding: 12px 24px;
+  background-color: #FE9E0D;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  width: auto;
+  transition: background-color 0.3s;
+}
+
+.file-upload-button-full:hover {
+  background-color: #e08e0c;
+}
+
+.file-name-full {
+  color: #666;
+  font-size: 14px;
+  text-align: left;
+  margin-top: 8px;
+}
+
+/* Submit Button */
+.submit-btn-full {
+  background-color: #FE9E0D;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  display: block;
+  margin: 40px auto 0;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.submit-btn-full:hover {
+  background-color: #e08e0c;
+}
+
+.submit-btn-full:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .registration-container-full {
+    padding: 20px 15px;
+  }
+
+  .registration-form-full {
+    padding: 20px;
+  }
+
+  .form-group-full {
+    min-width: 100%;
+  }
+
+  .form-row-full {
+    gap: 20px;
+  }
+
+  .registration-header h1 {
+    font-size: 24px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .file-upload-container-full {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration-container-full {
+    padding: 15px 10px;
+  }
+
+  .registration-form-full {
+    padding: 15px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"] {
+    padding: 10px 12px;
+  }
+
+  .submit-btn-full {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
+
+/* Custom styles to enhance Bootstrap */
+.registration-header {
+  position: relative;
+}
+
+.registration-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: #FE9E0D;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+}
+
+.form-control:focus {
+  border-color: #FE9E0D;
+  box-shadow: 0 0 0 0.25rem rgba(254, 158, 13, 0.25);
+}
+
+.btn-warning {
+  background-color: #FE9E0D;
+  border-color: #FE9E0D;
+}
+
+.btn-warning:hover {
+  background-color: #e08e0c;
+  border-color: #e08e0c;
+}
