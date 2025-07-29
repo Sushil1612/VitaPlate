@@ -1,0 +1,32 @@
+.caterer-card {
+  width: 23%;
+  min-width: 280px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.caterer-card:hover {
+  transform: scale(1.03);
+}
+
+.caterer-img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover;
+}
+
+.caterer-info {
+  padding: 1rem;
+}
+
+.caterer-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  margin-top: 1.5rem;
+}

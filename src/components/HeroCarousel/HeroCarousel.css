@@ -1,0 +1,28 @@
+.carousel-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .carousel-img {
+    width: 23%; /* ~4 images in one row with gaps */
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: transform 0.3s;
+  }
+  
+  .carousel-img:hover {
+    transform: scale(1.03);
+  }
+  

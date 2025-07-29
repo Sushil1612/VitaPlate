@@ -1,0 +1,50 @@
+/* src/components/Orders/Orders.css */
+
+.orders-page {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  .orders-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #fe9e0d;
+  }
+  
+  .order-section {
+    margin-bottom: 3rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #fe9e0d;
+    padding-bottom: 0.3rem;
+    color: #333;
+  }
+  
+  .order-list {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .order-card {
+    background-color: white;
+    padding: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    width: 300px;
+    transition: transform 0.3s ease;
+  }
+  
+  .order-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .order-card h4 {
+    margin-bottom: 0.6rem;
+    color: #444;
+  }
+  

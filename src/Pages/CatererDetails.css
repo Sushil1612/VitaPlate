@@ -1,0 +1,56 @@
+.caterer-details-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.caterer-banner {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  margin: 1.5rem 0;
+  border-radius: 10px;
+}
+
+/* 🔁 Vertical stacking for both packages and tiffins */
+.vertical-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* Optional: spacing between section headers and card groups */
+.section-heading {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding-left: 1rem;
+}
+
+/* Remove or comment out unused flex styles */
+.tiffin-sections {
+  /* display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 2rem; */
+}
+
+.packages-section {
+  /* flex: 1;
+  min-width: 300px; */
+}
+
+.tiffins-section {
+  /* flex: 2;
+  min-width: 500px; */
+}
+
+.item-grid {
+  /* If you ever go back to grid layout */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start;
+}

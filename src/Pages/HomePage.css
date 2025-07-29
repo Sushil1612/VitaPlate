@@ -1,0 +1,28 @@
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .content-area {
+    flex: 1;
+    padding: 1rem 2rem;
+    background-color: #fdfdfd;
+    overflow-y: auto;
+    height: 100vh;
+  }
+  
+  .promo-banner {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #ffeaea;
+    color: #333;
+    font-size: 1rem;
+    border-radius: 6px;
+    text-align: center;
+  }
+  

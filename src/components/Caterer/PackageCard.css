@@ -1,0 +1,9 @@
+.package-card {
+  width: 260px;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #fef7ed;
+  border: 1px solid #f4cd9f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+}

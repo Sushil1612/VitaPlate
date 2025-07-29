@@ -1,0 +1,37 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fe9e0d;
+  padding: 1rem 2rem; /* ⬅ increased top/bottom padding */
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .brand {
+    font-size: 1.8rem;
+  }
+  
+  .menu-icon,
+  .navbar-right {
+    font-size: 1.6rem;
+  }
+  
+  
+  .search-input {
+    padding: 0.8rem 1rem;
+    width: 900px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1rem;
+  }
+  
