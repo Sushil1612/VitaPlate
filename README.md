@@ -1,2 +1,0 @@
-# VitaPlate
-Vitamins ayukt plates.
